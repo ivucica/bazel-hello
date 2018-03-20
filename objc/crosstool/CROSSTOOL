@@ -135,16 +135,6 @@ toolchain {
     tool {
        tool_path: "gcc"
     }
-    #tool {
-    #  tool_path: "wrapped_clang"
-    #  execution_requirement: "requires-darwin"
-    #}
-    #flag_set {
-    #  flag_group {
-    #    flag: "-arch"
-    #    flag: "<architecture>"
-    #  }
-    #}
   }
 }
 # End clang linux
@@ -271,15 +261,5 @@ toolchain {
     tool {
        tool_path: "gcc"
     }
-    #tool {
-    #  tool_path: "wrapped_clang"
-    #  execution_requirement: "requires-darwin"
-    #}
-    #flag_set {
-    #  flag_group {
-    #    flag: "-arch"
-    #    flag: "<architecture>"
-    #  }
-    #}
   }
 }
