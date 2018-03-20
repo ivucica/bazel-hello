@@ -26,6 +26,8 @@ Build with:
 bazel build --crosstool_top=//objc/crosstool:default-toolchain --apple_crosstool_top=//objc/crosstool:default-toolchain --ios_multi_cpus=k8  //objc:objc
 ```
 
+(This will no longer work as k8 definition has been removed)
+
 ### Error
 
 ```
@@ -92,5 +94,33 @@ Caused by: java.lang.IllegalArgumentException: No supported apple platform regis
 	at com.google.devtools.build.lib.skyframe.ConfiguredTargetFunction.compute(ConfiguredTargetFunction.java:278)
 	at com.google.devtools.build.skyframe.AbstractParallelEvaluator$Evaluate.run(AbstractParallelEvaluator.java:340)
 	... 4 more
+```
+
+## Now ios_x86_64 and --apple_crosstool_top
+
+Build with:
+
+```
+bazel build --crosstool_top=//objc/crosstool:default-toolchain --apple_crosstool_top=//objc/crosstool:default-toolchain --ios_multi_cpus=x86_64  //objc:objc
+```
+
+### Error
+
+```
+ERROR: /home/user/projects/bazel-hello/objc/BUILD:1:1: in objc_library rule //objc:lib: Expected action_config for 'objc-archive' to be configured
+ERROR: /home/user/projects/bazel-hello/objc/BUILD:1:1: in objc_library rule //objc:lib: Expected action_config for 'c++-link-dynamic-library' to be configured
+ERROR: /home/ivucica/projects/bazel-hello/objc/BUILD:1:1: in objc_library rule //objc:lib: Expected action_config for 'objc-fully-link' to be configured
+ERROR: Analysis of target '//objc:objc' failed; build aborted: Analysis of target '//objc:lib' failed; build aborted
+INFO: Elapsed time: 0.714s
+FAILED: Build did NOT complete successfully (11 packages loaded)
+```
+
+and after defining these three
+
+```
+ERROR: Invalid toolchain configuration: multiple action configs for action 'c++-link-dynamic-library'
+ERROR: Analysis of target '//objc:objc' failed; build aborted: Invalid toolchain configuration: multiple action configs for action 'c++-link-dynamic-library'
+INFO: Elapsed time: 0.176s
+FAILED: Build did NOT complete successfully (1 packages loaded)
 ```
 

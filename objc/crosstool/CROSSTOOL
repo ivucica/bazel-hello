@@ -7,8 +7,8 @@ default_toolchain {
   toolchain_identifier: "local_linux_clang"
 }
 default_toolchain {
-  cpu: "ios_k8"
-  toolchain_identifier: "ios_k8"
+  cpu: "ios_x86_64"
+  toolchain_identifier: "ios_x86_64"
 }
 
 
@@ -142,10 +142,10 @@ toolchain {
 
 # Clang linux, but for --apple_crosstool_top
 toolchain {
-  toolchain_identifier: "ios_k8" #"ios_x86_64"
-  host_system_name: "x86_64-apple-macosx"
-  target_system_name: "x86_64-apple-ios"
-  target_cpu: "ios_k8" # "ios_x86_64"
+  toolchain_identifier: "ios_x86_64" #"ios_x86_64"
+  host_system_name: "local" #"x86_64-apple-macosx"
+  target_system_name: "local" #"x86_64-apple-ios"
+  target_cpu: "ios_x86_64"
   target_libc: "ios"
   compiler: "compiler"
   abi_version: "local"
@@ -261,5 +261,23 @@ toolchain {
     tool {
        tool_path: "gcc"
     }
+  }
+  action_config {
+    config_name: "objc-archive"
+    action_name: "objc-archive"
+    tool {
+       tool_path: "gcc"
+    }
+  }
+  action_config {
+    config_name: "objc-fully-link"
+    action_name: "objc-fully-link"
+    tool {
+       tool_path: "gcc"
+    }
+  }
+  action_config {
+    config_name: "c++-link-dynamic-library"
+    action_name: "c++-link-dynamic-library"
   }
 }

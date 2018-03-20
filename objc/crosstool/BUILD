@@ -17,9 +17,11 @@ cc_toolchain_suite(
         "k8|clang": ":cc-compiler-local-clang",
         # TODO: this should not be needed, but it's needed for this to work:
         # --apple_crosstool_top=//objc/crosstool:default-toolchain
-        # --ios_multi_cpus=k8
+        # --ios_multi_cpus=x86_64
         # There is no way to override compiler name; it has to be 'compiler'.
-        "ios_k8|compiler": ":cc-compiler-local-clang-fake-ios",
+        # This CPU also needs to be x86_64 otherwise there is no 'apple'
+        # platform definition.
+        "ios_x86_64|compiler": ":cc-compiler-local-clang-fake-ios",
     },
 )
 
@@ -42,7 +44,7 @@ cc_toolchain(
     name = "cc-compiler-local-clang-fake-ios",
     all_files = ":empty",
     compiler_files = ":empty",
-    cpu = "ios_k8", #"local",
+    cpu = "ios_x86_64", #"local",
     dwp_files = ":empty",
     dynamic_runtime_libs = [":empty"],
     linker_files = ":empty",
